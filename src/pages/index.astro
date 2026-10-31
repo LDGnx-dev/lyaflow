@@ -1,11 +1,26 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HeroSection from '../components/HeroSection.astro';
+import ShowcaseSection from '../components/showcase/ShowcaseSection.astro';
+import TechMetrics from '../components/TechMetrics.astro';
+import ContactSection from '../components/ContactSection.astro';
+import FontTester from '../components/FontTester.astro';
+import ShowcaseHero from '../components/showcase/ShowcaseHero.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout titleMetaKey="landing.meta.title" descriptionMetaKey="landing.meta.description">
+  <!-- Zona 1: Hero Principal -->
+  <HeroSection />
+
+  <!-- Zona 2: Showcase "Sticky Deck Stack" con imágenes reales -->
+  <ShowcaseSection />
+
+  <!-- Zona 3: Métricas & Arquitectura -->
+  <TechMetrics />
+
+  <!-- Zona 4: Cierre & Contacto -->
+  <ContactSection />
+
+  <!-- Probador de fuentes flotante -->
+  <FontTester />
 </Layout>

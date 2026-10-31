@@ -1,0 +1,105 @@
+---
+---
+<div class="sales-screen-layout">
+  <div class="sales-main-panel">
+    <div class="mock-input">Buscar producto o escanear código...</div>
+    <div class="mock-shortcuts">
+      <span>F1 Inicio</span>
+      <span>↑↓ Artículos</span>
+      <span>F2 Ventas</span>
+      <span>F4 Verif. Precio</span>
+    </div>
+    <div class="workspace-card">
+      <span class="icon">🛍️</span>
+      <h4>Área de Trabajo de Venta</h4>
+      <p>Escanea un código de barras o usa el buscador superior.</p>
+    </div>
+  </div>
+  <div class="sales-cart-panel">
+    <span class="client-badge">Público General <small>ID: DEFAULT</small></span>
+    <h5>Resumen de Venta</h5>
+    <div class="cart-empty-state">
+      <span class="icon">🛒</span>
+      <p>No hay productos en el carrito</p>
+    </div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total a pagar:</span>
+        <strong class="total-val">$0.00</strong>
+      </div>
+      <button class="btn-checkout">COBRAR [F2]</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sales-screen-layout {
+    display: grid;
+    grid-template-columns: 1fr 145px;
+    height: 100%;
+    background: #0f172a;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .sales-main-panel {
+    padding: 0.75rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mock-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    color: #64748b;
+  }
+  .mock-shortcuts {
+    display: flex;
+    gap: 0.25rem;
+    font-size: 0.55rem;
+    color: #94a3b8;
+  }
+  .mock-shortcuts span {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.12rem 0.25rem;
+    border-radius: 3px;
+  }
+  .workspace-card {
+    flex: 1;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .workspace-card .icon { font-size: 1.4rem; opacity: 0.5; margin-bottom: 0.2rem; }
+  .workspace-card h4 { font-size: 0.75rem; color: #f8fafc; }
+  .workspace-card p { font-size: 0.6rem; color: #64748b; }
+  .sales-cart-panel {
+    background: #0b1120;
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .client-badge { font-size: 0.55rem; color: #10b981; margin-bottom: 0.3rem; }
+  .sales-cart-panel h5 { font-size: 0.7rem; color: #f8fafc; margin-bottom: 0.5rem; }
+  .cart-empty-state { text-align: center; margin: auto 0; font-size: 0.6rem; color: #64748b; }
+  .cart-empty-state .icon { font-size: 1.2rem; display: block; margin-bottom: 0.2rem; }
+  .cart-footer { margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.4rem; }
+  .total-row { display: flex; justify-content: space-between; font-size: 0.62rem; color: #94a3b8; margin-bottom: 0.4rem; }
+  .total-val { color: #10b981; font-size: 0.85rem; }
+  .btn-checkout {
+    width: 100%;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid #8b5cf6;
+    color: #a78bfa;
+    padding: 0.35rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.65rem;
+  }
+</style>

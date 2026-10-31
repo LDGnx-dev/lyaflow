@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "フロー",
+    "meta": {
+      "title": "Lyaflow | 高速POSシステム",
+      "description": "高速で直感的、モダンなPOSレジシステム。"
+    },
+    "nav": {
+      "features": "機能",
+      "contact": "お問い合わせ",
+      "login": "ログイン"
+    },
+    "hero": {
+      "badge": "v1.0 ベータ版",
+      "subtitle": "日々のビジネススピードに合わせて設計された直感的で高速なPOSシステム。",
+      "cta": {
+        "primary": "デモを試す",
+        "secondary": "詳細を見る"
+      }
+    },
+    "features": {
+      "title": "ビジネスの現場のために設計",
+      "card1": {
+        "title": "超高速",
+        "desc": "会計時の待ち時間を削減するスムーズな操作性。"
+      },
+      "card2": {
+        "title": "スマート在庫管理",
+        "desc": "在庫状況と商品カタログを明確かつ簡単に管理。"
+      },
+      "card3": {
+        "title": "高い信頼性",
+        "desc": "オフラインファースト設計により常に稼働可能。"
+      }
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  }
+}

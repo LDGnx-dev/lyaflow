@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "流动",
+    "meta": {
+      "title": "Lyaflow | 高效收银系统",
+      "description": "快速、直观且现代化的 POS 收银系统。"
+    },
+    "nav": {
+      "features": "功能",
+      "contact": "联系",
+      "login": "登录"
+    },
+    "hero": {
+      "badge": "v1.0 测试版",
+      "subtitle": "直观且极其快速的收银系统，专为适应您的日常业务节奏而设计。",
+      "cta": {
+        "primary": "试用 Demo",
+        "secondary": "了解更多"
+      }
+    },
+    "features": {
+      "title": "为您的日常业务节奏而设计",
+      "card1": {
+        "title": "极致流畅",
+        "desc": "流畅的操作体验，结账无需等待。"
+      },
+      "card2": {
+        "title": "清晰库存",
+        "desc": "透明、直观的库存与商品目录管理。"
+      },
+      "card3": {
+        "title": "稳定可靠",
+        "desc": "离线优先 (Offline-first) 架构，时刻保持可用。"
+      }
+    },
+    "footer": {
+      "rights": "保留所有权利。"
+    }
+  }
+}

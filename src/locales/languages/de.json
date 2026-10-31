@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "FLIESST",
+    "meta": {
+      "title": "Lyaflow | Schnelles Kassensystem",
+      "description": "Schnelles, intuitives und modernes POS-System."
+    },
+    "nav": {
+      "features": "Funktionen",
+      "contact": "Kontakt",
+      "login": "Anmelden"
+    },
+    "hero": {
+      "badge": "v1.0 Beta",
+      "subtitle": "Intuitives und schnelles Kassensystem, entwickelt für den echten Arbeitsalltag.",
+      "cta": {
+        "primary": "Demo Testen",
+        "secondary": "Mehr Erfahren"
+      }
+    },
+    "features": {
+      "title": "Entwickelt für Ihre täglichen Abläufe",
+      "card1": {
+        "title": "Ultra Schnell",
+        "desc": "Flüssige Bedienung und reibungslose Kassiervorgänge."
+      },
+      "card2": {
+        "title": "Klare Lagerhaltung",
+        "desc": "Bestandsübersicht und Produktkatalog transparent organisiert."
+      },
+      "card3": {
+        "title": "Zuverlässig",
+        "desc": "Offline-first Architektur für unterbrechungsfreie Nutzung."
+      }
+    },
+    "footer": {
+      "rights": "Alle Rechte vorbehalten."
+    }
+  }
+}

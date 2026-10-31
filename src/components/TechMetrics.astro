@@ -1,0 +1,73 @@
+---
+// src/components/TechMetrics.astro
+---
+
+<section class="section-slide metrics-slide">
+  <div class="container text-center">
+    <span class="badge">Performance & Arquitectura</span>
+    <h2>Diseñado bajo el margen de los &lt;14KB</h2>
+    <p class="metrics-subtitle">Sin frameworks pesados de CSS, optimizado para cargar al instante en cualquier hardware.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-num">&lt;14KB</span>
+        <h4>Initial Bundle</h4>
+        <p>Carga ultrarrápida sin sobrecargar la red ni la memoria RAM.</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-num">100%</span>
+        <h4>Offline-First</h4>
+        <p>Base de datos local IndexedDB sincronizada automáticamente.</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-num">0.2s</span>
+        <h4>Checkout Instantáneo</h4>
+        <p>Procesamiento de ventas sin latencia en la interfaz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .metrics-slide {
+    background: linear-gradient(180deg, var(--bg) 0%, #11141c 100%);
+  }
+  .metrics-slide h2 {
+    font-size: 2.3rem;
+    margin-bottom: 0.8rem;
+  }
+  .metrics-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 3.5rem;
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+  }
+  .metric-num {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .metric-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .metric-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>

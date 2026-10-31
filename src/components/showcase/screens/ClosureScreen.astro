@@ -1,0 +1,38 @@
+---
+---
+<div class="closure-screen-layout">
+  <div class="header-bar">
+    <h3>Control y Cierre de Caja</h3>
+    <span class="badge-active">TURNO ACTIVO</span>
+  </div>
+  <div class="cards-grid">
+    <div class="c-card"><span>VENTAS</span><strong>0 ticket(s)</strong></div>
+    <div class="c-card"><span>EFECTIVO ESPERADO</span><strong>$500.00</strong></div>
+    <div class="c-card"><span>TARJETAS</span><strong>$0.00</strong></div>
+  </div>
+  <div class="table-mock">
+    <div class="row head"><span>CONCEPTO</span><span>SISTEMA</span><span>DECLARADO</span></div>
+    <div class="row"><span>Fondo Inicial de Caja</span><span>$500.00</span><span>$500.00</span></div>
+    <div class="row"><span>Efectivo en Caja</span><span>$0.00</span><span>$0.00</span></div>
+    <div class="row"><span>Tarjeta Débito / Crédito</span><span>$0.00</span><span>$0.00</span></div>
+  </div>
+</div>
+
+<style>
+  .closure-screen-layout {
+    padding: 0.8rem;
+    height: 100%;
+    box-sizing: border-box;
+    background: #0f172a;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .header-bar h3 { font-size: 0.8rem; color: #f8fafc; }
+  .badge-active { background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.55rem; padding: 0.12rem 0.4rem; border-radius: 9999px; font-weight: 700; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.6rem; }
+  .c-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.4rem; border-radius: 6px; font-size: 0.58rem; color: #94a3b8; display: flex; flex-direction: column; }
+  .c-card strong { font-size: 0.75rem; color: #f8fafc; margin-top: 0.15rem; }
+  .table-mock { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; font-size: 0.62rem; }
+  .table-mock .row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 0.3rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #94a3b8; }
+  .table-mock .row.head { background: rgba(255, 255, 255, 0.04); font-weight: 700; color: #f8fafc; }
+</style>

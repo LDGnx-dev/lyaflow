@@ -1,0 +1,128 @@
+---
+import DynamicSlogan from './DynamicSlogan.astro';
+---
+
+<section id="inicio" class="section-slide hero-slide">
+    <div class="container hero-content">
+        <span class="badge badge-pulse animate-fade-in" data-meta="landing.hero.badge">
+            v1.0 Beta
+        </span>
+
+        <DynamicSlogan 
+            baseTextLead="Lya" 
+            baseTextTrail="con tu negocio" 
+        />
+
+        <p class="animate-fade-in animate-delay-2" data-meta="landing.hero.subtitle">
+            Punto de venta intuitivo, veloz y diseñado para adaptarse al ritmo real de tus operaciones.
+        </p>
+
+        <div class="hero-actions animate-fade-in animate-delay-3">
+            <a href="#producto" class="btn-primary smooth-blur-btn" data-meta="landing.hero.cta.primary">Explorar Sistema</a>
+            <a href="#contacto" class="btn-secondary smooth-blur-btn" data-meta="landing.hero.cta.secondary">Saber Más</a>
+        </div>
+    </div>
+
+    <a href="#producto" class="scroll-indicator smooth-blur-btn" aria-label="Desplazarse hacia abajo">
+        <span class="mouse-icon"></span>
+    </a>
+</section>
+
+<!-- En src/components/HeroSection.astro -->
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const blurLinks = document.querySelectorAll('.smooth-blur-btn');
+
+        blurLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                if (!targetId || !targetId.startsWith('#')) return;
+
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+
+                e.preventDefault();
+
+                // 1. Activar desenfoque ultrarrápido
+                document.body.classList.add('blur-scrolling');
+
+                // 2. Desplazarse al instante
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // 3. Quitar el blur casi de inmediato (280ms)
+                setTimeout(() => {
+                    document.body.classList.remove('blur-scrolling');
+                    history.pushState(null, '', targetId);
+                }, 280);
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Centrado absoluto dentro del viewport */
+    .hero-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+    }
+    .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero-content p {
+        color: var(--text-muted);
+        font-size: 1.15rem;
+        max-width: 620px;
+        margin: 0 auto 2.2rem;
+    }
+    .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+    .scroll-indicator:hover {
+        opacity: 1;
+    }
+    .mouse-icon {
+        display: block;
+        width: 24px;
+        height: 38px;
+        border: 2px solid var(--text-muted);
+        border-radius: 12px;
+        position: relative;
+    }
+    .mouse-icon::before {
+        content: '';
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 2px;
+        animation: scrollBounce 2s infinite;
+    }
+    @keyframes scrollBounce {
+        0% { transform: translate(-50%, 0); opacity: 1; }
+        100% { transform: translate(-50%, 14px); opacity: 0; }
+    }
+</style>

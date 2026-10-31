@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "FLOWS",
+    "meta": {
+      "title": "Lyaflow | Fast POS System",
+      "description": "Fast, intuitive, and modern point-of-sale system."
+    },
+    "nav": {
+      "features": "Features",
+      "contact": "Contact",
+      "login": "Sign In"
+    },
+    "hero": {
+      "badge": "v1.0 Beta",
+      "subtitle": "Intuitive, ultra-fast point of sale designed to adapt to your daily business operations.",
+      "cta": {
+        "primary": "Try Demo",
+        "secondary": "Learn More"
+      }
+    },
+    "features": {
+      "title": "Engineered for your daily business pace",
+      "card1": {
+        "title": "Ultra Fast",
+        "desc": "Fluid UI interactions with zero delay during sales checkout."
+      },
+      "card2": {
+        "title": "Smart Inventory",
+        "desc": "Clear stock monitoring and item cataloging organized effortlessly."
+      },
+      "card3": {
+        "title": "Reliable",
+        "desc": "Offline-first architecture keeping operations active anytime."
+      }
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  }
+}

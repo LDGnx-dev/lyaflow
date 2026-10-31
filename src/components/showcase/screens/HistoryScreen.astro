@@ -1,0 +1,32 @@
+---
+---
+<div class="history-screen-layout">
+  <div class="header-bar">
+    <h3>Histórico y Registros de Operaciones</h3>
+    <span class="pill-green">31 tickets</span>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><span>VENTAS CONCLUIDAS</span><strong class="green">$1946.63</strong></div>
+    <div class="stat-card"><span>CANCELADAS</span><strong class="red">-$635.50</strong></div>
+    <div class="stat-card"><span>MARGEN BRUTO</span><strong class="green">+$681.32</strong></div>
+  </div>
+  <div class="log-preview">
+    <div class="log-item"><span>FOL-20261011-8358</span><span class="green">$61.00</span></div>
+    <div class="log-item"><span>FOL-20261011-3285</span><span class="green">$38.00</span></div>
+    <div class="log-item alert"><span>Anulación Autorizada</span><span class="red">-$16.00</span></div>
+  </div>
+</div>
+
+<style>
+  .history-screen-layout { padding: 0.8rem; height: 100%; box-sizing: border-box; background: #0f172a; font-family: system-ui, -apple-system, sans-serif; }
+  .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .header-bar h3 { font-size: 0.8rem; color: #f8fafc; }
+  .pill-green { background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.55rem; padding: 0.12rem 0.4rem; border-radius: 9999px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.6rem; }
+  .stat-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.4rem; border-radius: 6px; font-size: 0.58rem; color: #94a3b8; display: flex; flex-direction: column; }
+  .stat-card strong { font-size: 0.75rem; margin-top: 0.15rem; }
+  .green { color: #10b981 !important; }
+  .red { color: #f87171 !important; }
+  .log-preview { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; font-size: 0.62rem; }
+  .log-item { display: flex; justify-content: space-between; padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #94a3b8; }
+</style>

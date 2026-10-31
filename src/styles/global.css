@@ -1,0 +1,289 @@
+/* 1. Imports modulares (SIEMPRE al inicio del archivo) */
+@import './animations.css';
+@import './font-tester.css';
+
+/* 2. Variables globales de diseño */
+:root {
+    --bg: #0d0f12;
+    --bg-card: #161920;
+    --border: #232834;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent-hover: #7c3aed;
+}
+
+/* 3. Reset universal corregido */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 4. Animaciones Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseSubtle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4));
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 22px rgba(139, 92, 246, 0.7));
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.15s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.30s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.45s; opacity: 0; }
+
+.badge-pulse {
+    animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* --- ANIMACIÓN ESTILO MEDUSA (ORGANIC JELLY DISSOLVE) --- */
+
+.slogan-word-anchor {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 1.3em;
+    padding: 0 0.15em;
+    transition: width 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slogan-jelly-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    color: var(--accent);
+    font-size: 1.05em;
+    white-space: nowrap;
+    text-shadow: 
+        0 0 18px rgba(139, 92, 246, 0.65),
+        0 0 38px rgba(139, 92, 246, 0.35);
+    
+    transition: 
+        opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform, filter;
+}
+
+.slogan-jelly-layer.dissolve-out {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.18);
+    filter: blur(8px);
+}
+
+.slogan-jelly-layer.dissolve-in-prepare {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+    filter: blur(8px);
+}
+
+/* Desenfoque de velocidad durante el scroll */
+body.blur-scrolling .snap-container,
+body.blur-scrolling .hero-slide,
+body.blur-scrolling .product-wrapper {
+    filter: blur(6px);
+    transform: scale(0.995);
+    transition: filter 0.15s ease-out, transform 0.25s ease-out;
+}
+
+body:not(.blur-scrolling) .snap-container,
+body:not(.blur-scrolling) .hero-slide,
+body:not(.blur-scrolling) .product-wrapper {
+    filter: blur(0px);
+    transform: scale(1);
+    transition: filter 0.35s ease-in, transform 0.35s ease-in;
+}
+
+/* Contenedor principal con Snap obligatorio */
+.snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* Secciones tipo Slide */
+.section-slide {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.showcase-scroll-area {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    padding: 6rem 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* NAVBAR DINÁMICO */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.navbar-hero {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    padding: 1.5rem 0;
+}
+
+.navbar.navbar-scrolled {
+    background: rgba(13, 15, 18, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.brand span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.5);
+}
+
+.btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card);
+    transform: translateY(-2px);
+}
+
+.hero-slogan {
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4em;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}

@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "FLUYE",
+    "meta": {
+      "title": "Lyaflow | Punto de Venta Ágil",
+      "description": "Sistema de punto de venta rápido, intuitivo y moderno."
+    },
+    "nav": {
+      "features": "Características",
+      "contact": "Contacto",
+      "login": "Iniciar Sesión"
+    },
+    "hero": {
+      "badge": "v1.0 Beta",
+      "subtitle": "Punto de venta intuitivo, veloz y diseñado para adaptarse al ritmo real de tus operaciones.",
+      "cta": {
+        "primary": "Probar Demo",
+        "secondary": "Saber Más"
+      }
+    },
+    "features": {
+      "title": "Diseñado para el ritmo de tu día a día",
+      "card1": {
+        "title": "Ultra Rápido",
+        "desc": "Interacciones fluidas y cobros al instante sin demoras en la interfaz."
+      },
+      "card2": {
+        "title": "Inventario Claro",
+        "desc": "Control de existencias y catálogo organizados de forma transparente."
+      },
+      "card3": {
+        "title": "Confiable",
+        "desc": "Operación continua con arquitectura offline-first siempre lista."
+      }
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados."
+    }
+  }
+}

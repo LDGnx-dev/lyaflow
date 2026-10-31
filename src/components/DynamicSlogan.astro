@@ -1,0 +1,100 @@
+---
+import uiTranslations, { VALID_LANGS } from '../locales/index';
+
+interface Props {
+    baseTextLead?: string;
+    baseTextTrail?: string;
+    initialLang?: string;
+}
+
+const { 
+    baseTextLead = "Lya", 
+    baseTextTrail = "con tu negocio",
+    initialLang = "es"
+} = Astro.props;
+
+const flowTranslations = VALID_LANGS.map((lang) => ({
+    lang,
+    word: uiTranslations[lang]?.landing?.sloganVerb || "FLUYE"
+}));
+
+const sortedTranslations = [
+    ...flowTranslations.filter(t => t.lang === initialLang),
+    ...flowTranslations.filter(t => t.lang !== initialLang)
+];
+---
+
+<h1 class="hero-slogan animate-fade-in animate-delay-1">
+    <span data-meta="landing.slogan.lead">{baseTextLead}</span>
+    
+    <!-- Ancla de palabras -->
+    <span id="word-anchor" class="slogan-word-anchor">
+        <span id="layer-active" class="slogan-jelly-layer" data-meta="landing.slogan.verb">
+            {sortedTranslations[0].word}
+        </span>
+        <span id="layer-incoming" class="slogan-jelly-layer dissolve-in-prepare" aria-hidden="true">
+        </span>
+    </span>
+
+    <span data-meta="landing.slogan.trail">{baseTextTrail}</span>
+</h1>
+
+<script is:inline define:vars={{ sortedTranslations }}>
+    document.addEventListener('DOMContentLoaded', () => {
+        const anchor = document.getElementById('word-anchor');
+        let activeLayer = document.getElementById('layer-active');
+        let incomingLayer = document.getElementById('layer-incoming');
+
+        if (!anchor || !activeLayer || !incomingLayer || sortedTranslations.length <= 1) return;
+
+        let currentIndex = 0;
+
+        // Función para medir el ancho exacto del texto con la fuente computada en tiempo real
+        const measureTextWidth = (text, element) => {
+            const canvas = measureTextWidth.canvas || (measureTextWidth.canvas = document.createElement("canvas"));
+            const context = canvas.getContext("2d");
+            const style = window.getComputedStyle(element);
+            context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+            return context.measureText(text).width;
+        };
+
+        // Asignar el ancho exacto inicial al contenedor
+        const initialWidth = measureTextWidth(sortedTranslations[0].word, activeLayer);
+        anchor.style.width = `${initialWidth + 12}px`; // 12px de margen orgánico
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % sortedTranslations.length;
+            const nextWord = sortedTranslations[currentIndex].word;
+
+            // 1. Preparar la palabra entrante en la capa secundaria
+            incomingLayer.textContent = nextWord;
+            incomingLayer.className = "slogan-jelly-layer dissolve-in-prepare";
+
+            // 2. Calcular el nuevo ancho de la palabra entrante
+            const nextWidth = measureTextWidth(nextWord, incomingLayer);
+
+            // Force reflow para registrar el estado inicial
+            void incomingLayer.offsetWidth;
+
+            // 3. Animar simultáneamente:
+            // - El contenedor ajusta su ancho con fluidez
+            // - La palabra vieja se disuelve y expande (dissolve-out)
+            // - La palabra nueva aparece fusionándose hacia el centro
+            anchor.style.width = `${nextWidth + 12}px`;
+            activeLayer.classList.add('dissolve-out');
+            incomingLayer.classList.remove('dissolve-in-prepare');
+
+            // 4. Intercambiar referencias de las capas al terminar la transición (650ms)
+            setTimeout(() => {
+                activeLayer.textContent = "";
+                activeLayer.className = "slogan-jelly-layer dissolve-in-prepare";
+                
+                // Swap de elementos
+                const temp = activeLayer;
+                activeLayer = incomingLayer;
+                incomingLayer = temp;
+            }, 650);
+
+        }, 3200); // Ritmo pausado y relajado de respiración de medusa
+    });
+</script>

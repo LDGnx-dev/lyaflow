@@ -1,0 +1,52 @@
+/* Imports de Google Fonts para pruebas de tipografía */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+/* Clases utilitarias de fuentes dinámicas */
+.font-rubik-glitch { font-family: 'Rubik Glitch', system-ui; }
+.font-permanent-marker { font-family: 'Permanent Marker', cursive; }
+.font-playwrite { font-family: 'Playwrite AU NSW', cursive; }
+.font-pattaya { font-family: 'Pattaya', sans-serif; }
+.font-kurale { font-family: 'Kurale', serif; }
+.font-bad-script { font-family: 'Bad Script', cursive; }
+.font-dela-gothic { font-family: 'Dela Gothic One', cursive; }
+
+/* Selector Flotante de Pruebas */
+.font-picker-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(22, 25, 32, 0.95);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.font-picker-floating label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.font-picker-floating select {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+}

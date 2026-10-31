@@ -1,0 +1,28 @@
+---
+---
+<div class="inventory-screen-layout">
+  <div class="metrics-grid">
+    <div class="inv-card"><span>Total en Catálogo</span><strong>42 Productos</strong></div>
+    <div class="inv-card"><span>Unidades en Stock</span><strong>1094.75 Unid.</strong></div>
+    <div class="inv-card alert"><span>Stock Crítico</span><strong>13 Prod.</strong></div>
+  </div>
+  <div class="inv-table">
+    <div class="row head"><span>Código</span><span>Nombre</span><span>Precio</span><span>Stock</span></div>
+    <div class="row"><span>prod-agua-01</span><span>Agua Purificada 1.5L</span><span>$17.50</span><span class="stock-ok">38</span></div>
+    <div class="row"><span>prod-cafe-01</span><span>Café Americano Reg.</span><span>$22.00</span><span class="stock-ok">79</span></div>
+    <div class="row"><span>prod-sabritas-04</span><span>Cheetos Torciditos</span><span>$15.00</span><span class="stock-alert">0</span></div>
+  </div>
+</div>
+
+<style>
+  .inventory-screen-layout { padding: 0.8rem; height: 100%; box-sizing: border-box; background: #0f172a; font-family: system-ui, -apple-system, sans-serif; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.6rem; }
+  .inv-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.4rem; border-radius: 6px; font-size: 0.58rem; color: #94a3b8; display: flex; flex-direction: column; }
+  .inv-card strong { font-size: 0.75rem; color: #f8fafc; margin-top: 0.15rem; }
+  .inv-card.alert strong { color: #f87171; }
+  .inv-table { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; font-size: 0.62rem; }
+  .inv-table .row { display: grid; grid-template-columns: 1fr 2fr 1fr 1fr; padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #94a3b8; }
+  .inv-table .row.head { background: rgba(255, 255, 255, 0.04); font-weight: 700; color: #f8fafc; }
+  .stock-ok { color: #10b981; font-weight: 700; }
+  .stock-alert { color: #f87171; font-weight: 700; }
+</style>

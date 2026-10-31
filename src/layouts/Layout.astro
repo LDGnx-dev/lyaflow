@@ -1,23 +1,73 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+    titleMetaKey?: string;
+    descriptionMetaKey?: string;
+}
+
+const { 
+    titleMetaKey = "landing.meta.title", 
+    descriptionMetaKey = "landing.meta.description" 
+} = Astro.props;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" data-meta={descriptionMetaKey} content="Lyaflow POS" />
+        <title data-meta={titleMetaKey}>Lyaflow</title>
+    </head>
+    <body>
+        <!-- Navbar con clases dinámicas por scroll -->
+        <header id="main-navbar" class="navbar navbar-hero">
+            <div class="container nav-content">
+                <a href="#inicio" class="brand">Lyaflow<span>.</span></a>
+                <nav class="nav-links">
+                    <a href="#producto" data-meta="landing.nav.features">Features</a>
+                    <a href="#contacto" data-meta="landing.nav.contact">Contact</a>
+                    <a href="#login" class="btn-secondary" data-meta="landing.nav.login">Sign In</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="snap-container">
+            <slot />
+        </main>
+
+        <footer>
+            <div class="container footer-content">
+                <p>
+                    &copy; {new Date().getFullYear()} Lyaflow. 
+                    <span data-meta="landing.footer.rights">All rights reserved.</span>
+                </p>
+            </div>
+        </footer>
+
+        <script is:inline>
+            document.addEventListener('DOMContentLoaded', () => {
+                const navbar = document.getElementById('main-navbar');
+                const heroSection = document.getElementById('inicio');
+
+                if (!navbar || !heroSection) return;
+
+                // Detecta cuando se sale del primer Hero para transformar el Navbar
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navbar.classList.add('navbar-hero');
+                            navbar.classList.remove('navbar-scrolled');
+                        } else {
+                            navbar.classList.remove('navbar-hero');
+                            navbar.classList.add('navbar-scrolled');
+                        }
+                    });
+                }, { threshold: 0.4 });
+
+                observer.observe(heroSection);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "landing": {
+    "sloganVerb": "COULE",
+    "meta": {
+      "title": "Lyaflow | Système Caisse Rapide",
+      "description": "Système de point de vente rapide, intuitif et moderne."
+    },
+    "nav": {
+      "features": "Fonctionnalités",
+      "contact": "Contact",
+      "login": "Connexion"
+    },
+    "hero": {
+      "badge": "v1.0 Bêta",
+      "subtitle": "Point de vente intuitif et véloce conçu pour s'adapter au rythme réel de vos opérations.",
+      "cta": {
+        "primary": "Essayer la Démo",
+        "secondary": "En savoir plus"
+      }
+    },
+    "features": {
+      "title": "Conçu pour le rythme de votre activité",
+      "card1": {
+        "title": "Ultra Rapide",
+        "desc": "Interactions fluides et encaisser instantané sans ralentissement."
+      },
+      "card2": {
+        "title": "Inventaire Clair",
+        "desc": "Contrôle des stocks et catalogue organisés de façon transparente."
+      },
+      "card3": {
+        "title": "Fiable",
+        "desc": "Architecture offline-first prêt à fonctionner à tout moment."
+      }
+    },
+    "footer": {
+      "rights": "Tous droits réservés."
+    }
+  }
+}

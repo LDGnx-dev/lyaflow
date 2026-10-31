@@ -1,0 +1,52 @@
+---
+// src/components/FontTester.astro
+const fonts = [
+    { name: "Rubik Glitch", class: "font-rubik-glitch" },
+    { name: "Permanent Marker", class: "font-permanent-marker" },
+    { name: "Playwrite AU NSW", class: "font-playwrite" },
+    { name: "Pattaya", class: "font-pattaya" },
+    { name: "Kurale", class: "font-kurale" },
+    { name: "Bad Script", class: "font-bad-script" },
+    { name: "Dela Gothic One", class: "font-dela-gothic" }
+];
+---
+
+<div class="font-picker-floating">
+    <label for="font-select">Fuente Verb:</label>
+    <select id="font-select">
+        {fonts.map((f) => (
+            <option value={f.class}>{f.name}</option>
+        ))}
+    </select>
+</div>
+
+<script is:inline>
+    const initFontTester = () => {
+        const select = document.getElementById('font-select');
+        const wordAnchor = document.getElementById('word-anchor');
+
+        if (!select || !wordAnchor) return;
+
+        const fontClasses = [
+            'font-rubik-glitch', 'font-permanent-marker', 'font-playwrite',
+            'font-pattaya', 'font-kurale', 'font-bad-script', 'font-dela-gothic'
+        ];
+
+        const applyFont = (className) => {
+            // Se aplica directamente sobre la ancla contenedora
+            wordAnchor.classList.remove(...fontClasses);
+            wordAnchor.classList.add(className);
+        };
+
+        // Aplicar la fuente seleccionada
+        applyFont(select.value);
+
+        select.addEventListener('change', (e) => {
+            applyFont(e.target.value);
+        });
+    };
+
+    // Compatible con carga tradicional y transiciones de Astro
+    document.addEventListener('DOMContentLoaded', initFontTester);
+    document.addEventListener('astro:page-load', initFontTester);
+</script>

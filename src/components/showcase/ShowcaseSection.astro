@@ -1,0 +1,314 @@
+---
+import ShowcaseHero from './ShowcaseHero.astro';
+import SalesScreen from './screens/SalesScreen.astro';
+import ClosureScreen from './screens/ClosureScreen.astro';
+import HistoryScreen from './screens/HistoryScreen.astro';
+import InventoryScreen from './screens/InventoryScreen.astro';
+import ConfigScreen from './screens/ConfigScreen.astro';
+
+const modules = [
+  { id: "sales", tag: "Módulo 01", title: "Panel de Ventas & Cobro Ágil", desc: "Cobros en milisegundos con atajos numéricos [F2], pagos parciales y catálogo rápido.", menu: "Ventas" },
+  { id: "clousure", tag: "Módulo 02", title: "Control & Cierre de Caja", desc: "Arqueos transparentes en tiempo real. Cuadre contable automatizado de efectivo y tarjetas.", menu: "Cierre" },
+  { id: "history", tag: "Módulo 03", title: "Histórico & Auditoría", desc: "Consulta de operaciones, tickets emitidos, cortes Z/X y registro de devoluciones.", menu: "Historial" },
+  { id: "inventory", tag: "Módulo 04", title: "Inventario & Stock Crítico", desc: "Catálogo con etiquetas, control de existencias y alertas de stock crítico.", menu: "Inventario" },
+  { id: "config", tag: "Módulo 05", title: "Identidad & Mascotas Lya", desc: "Personalización de marca con variantes vectoriales de la mascota Lya.", menu: "Configuración" }
+];
+---
+
+<section id="producto" class="showcase-wrapper">
+  <!-- Slide 1: Hero de Presentación de Producto (100vh) -->
+  <ShowcaseHero />
+
+  <!-- Pista de Scroll de los 5 Módulos -->
+  <div class="deck-scroll-track">
+    
+    <!-- Viewport Sticky que permanece fijo en pantalla durante el scroll -->
+    <div class="deck-sticky-viewport">
+      <div class="container deck-grid">
+        
+        <!-- Lateral Izquierdo: Información Descriptiva Dinámica -->
+        <div class="info-side">
+          {modules.map((item, index) => (
+            <div class={`info-block ${index === 0 ? 'active' : ''}`} data-index={index}>
+              <span class="module-tag">{item.tag}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <div class="chips-row">
+                <span class="chip">⚡ &lt;14KB Core</span>
+                <span class="chip">🌐 Offline-First</span>
+                <span class="chip">🖨️ Ticket 80mm</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Lateral Derecho: Ventana POS en Perspectiva 3D con Pila de Capas -->
+        <div class="stage-3d">
+          <div class="tilted-window">
+            <div class="window-bar">
+              <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+              <div class="window-title"><span class="icon">🪼</span> <span id="active-tab-label">Panel de Ventas | Lyaflow</span></div>
+            </div>
+
+            <div class="pos-app-body">
+              <aside class="pos-sidebar">
+                <div class="brand">🪼 Lyaflow</div>
+                <nav class="sidebar-menu">
+                  {modules.map((item, index) => (
+                    <div 
+                      class={`menu-item ${index === 0 ? 'active' : ''}`} 
+                      data-menu={item.menu}
+                      data-target-index={index}
+                    >
+                      {item.menu === "Ventas" && "🛍️"}
+                      {item.menu === "Cierre" && "🧾"}
+                      {item.menu === "Historial" && "🕒"}
+                      {item.menu === "Inventario" && "📦"}
+                      {item.menu === "Configuración" && "⚙️"}
+                      {" " + item.menu}
+                    </div>
+                  ))}
+                </nav>
+              </aside>
+
+              <div class="pos-viewport">
+                <header class="pos-topbar">
+                  <span class="status"><span class="online-dot"></span> Cliente 2ND</span>
+                  <span class="user">🌐 ES MX <small class="avatar">NA</small></span>
+                </header>
+
+                <div class="stack-3d-layers">
+                  <div class="pos-layer active" data-layer="0"><SalesScreen /></div>
+                  <div class="pos-layer" data-layer="1"><ClosureScreen /></div>
+                  <div class="pos-layer" data-layer="2"><HistoryScreen /></div>
+                  <div class="pos-layer" data-layer="3"><InventoryScreen /></div>
+                  <div class="pos-layer" data-layer="4"><ConfigScreen /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pasos Físicos de Scroll Snap (Coinciden exactamente con .snap-container) -->
+    <div class="snap-steps-flow">
+      {modules.map((_, index) => (
+        <div class="snap-step section-slide" data-step={index}></div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainSnapContainer = document.querySelector('.snap-container');
+    const snapSteps = document.querySelectorAll('.snap-step');
+    const layers = document.querySelectorAll('.pos-layer');
+    const infoBlocks = document.querySelectorAll('.info-block');
+    const menuItems = document.querySelectorAll('.sidebar-menu .menu-item');
+    const tabLabel = document.getElementById('active-tab-label');
+
+    if (!snapSteps.length || !layers.length) return;
+
+    const titles = [
+      "Panel de Ventas | Lyaflow",
+      "Control y Cierre de Caja | Lyaflow",
+      "Histórico y Registros | Lyaflow",
+      "Inventario y Stock | Lyaflow",
+      "Configuración del Sistema | Lyaflow"
+    ];
+    const menus = ["Ventas", "Cierre", "Historial", "Inventario", "Configuración"];
+
+    // Transición 3D con desenfoque de capas
+    const update3DStack = (activeIndex) => {
+      layers.forEach((layer, idx) => {
+        if (idx < activeIndex) {
+          layer.style.opacity = '0';
+          layer.style.transform = 'translateZ(120px) translateY(-25px)';
+          layer.style.filter = 'blur(10px)';
+          layer.style.pointerEvents = 'none';
+        } else if (idx === activeIndex) {
+          layer.style.opacity = '1';
+          layer.style.transform = 'translateZ(0) translateY(0)';
+          layer.style.filter = 'blur(0px)';
+          layer.style.pointerEvents = 'auto';
+        } else {
+          const depthOffset = (idx - activeIndex) * 50;
+          const yOffset = (idx - activeIndex) * 12;
+          layer.style.opacity = '0.35';
+          layer.style.transform = `translateZ(-${depthOffset}px) translateY(${yOffset}px)`;
+          layer.style.filter = 'blur(2px)';
+          layer.style.pointerEvents = 'none';
+        }
+      });
+
+      infoBlocks.forEach((block, idx) => block.classList.toggle('active', idx === activeIndex));
+      menuItems.forEach((item) => item.classList.toggle('active', item.getAttribute('data-menu') === menus[activeIndex]));
+      if (tabLabel) tabLabel.textContent = titles[activeIndex];
+    };
+
+    // IntersectionObserver configurado con la raíz correcta (.snap-container de Layout.astro)
+    const observerOptions = {
+      root: mainSnapContainer || null,
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute('data-step'), 10);
+          update3DStack(index);
+        }
+      });
+    }, observerOptions);
+
+    snapSteps.forEach((step) => observer.observe(step));
+
+    // Navegación interactiva desde el menú lateral
+    menuItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const targetIdx = parseInt(item.getAttribute('data-target-index'), 10);
+        if (snapSteps[targetIdx]) {
+          snapSteps[targetIdx].scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .showcase-wrapper { 
+    width: 100%; 
+    position: relative;
+  }
+
+  .deck-scroll-track {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Vista Sticky fija centrada mientras se desplazan los snap-steps */
+  .deck-sticky-viewport {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Flujo de Anclajes de Scroll Snap en el DOM */
+  .snap-steps-flow {
+    position: relative;
+    z-index: 1;
+  }
+
+  .snap-step {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    pointer-events: none;
+  }
+
+  /* Superpone el primer paso exactamente sobre la vista sticky */
+  .snap-step:first-child {
+    margin-top: -100vh;
+  }
+
+  .deck-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .info-side { 
+    position: relative; 
+    height: 220px; 
+    pointer-events: auto;
+  }
+
+  .info-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+
+  .info-block.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .module-tag { color: var(--accent, #8b5cf6); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+  .info-block h3 { font-size: 1.8rem; margin: 0.3rem 0 0.6rem; color: var(--text, #f3f4f6); }
+  .info-block p { color: var(--text-muted, #9ca3af); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }
+  .chips-row { display: flex; gap: 0.4rem; }
+  .chip { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border, #232834); padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.7rem; color: var(--text-muted, #9ca3af); }
+
+  /* Escenario Ventana 3D */
+  .stage-3d { 
+    perspective: 1200px; 
+    pointer-events: auto;
+  }
+
+  .tilted-window {
+    background: #0b1120;
+    border: 1px solid var(--border, #232834);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: -20px 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.15);
+    transform: rotateX(12deg) rotateY(-10deg) rotateZ(2deg);
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  .window-bar { background: #070a14; padding: 0.5rem 0.8rem; display: flex; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  .dots { display: flex; gap: 0.35rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.red { background: #ef4444; } .dot.yellow { background: #f59e0b; } .dot.green { background: #10b981; }
+  .window-title { margin-left: auto; font-size: 0.68rem; color: #94a3b8; }
+
+  .pos-app-body { display: grid; grid-template-columns: 140px 1fr; height: 370px; background: #0f172a; }
+  .pos-sidebar { background: #0b1120; border-right: 1px solid rgba(255, 255, 255, 0.08); padding: 0.7rem 0.5rem; display: flex; flex-direction: column; }
+  .pos-sidebar .brand { font-weight: 700; font-size: 0.8rem; color: #fff; margin-bottom: 0.8rem; }
+  .sidebar-menu { display: flex; flex-direction: column; gap: 0.2rem; }
+  
+  .menu-item { 
+    padding: 0.35rem 0.5rem; 
+    border-radius: 6px; 
+    font-size: 0.68rem; 
+    color: #94a3b8; 
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .menu-item:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+  .menu-item.active { background: rgba(139, 92, 246, 0.18); color: #a78bfa; font-weight: 600; }
+
+  .pos-viewport { display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .pos-topbar { height: 32px; background: #1e293b; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; padding: 0 0.7rem; font-size: 0.65rem; color: #94a3b8; }
+  .online-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+  .avatar { background: #10b981; color: #fff; padding: 0.1rem 0.3rem; border-radius: 50%; font-size: 0.5rem; }
+
+  .stack-3d-layers { position: relative; flex: 1; transform-style: preserve-3d; }
+  .pos-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #0f172a;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+    backface-visibility: hidden;
+  }
+
+  @media (max-width: 900px) {
+    .deck-grid { grid-template-columns: 1fr; }
+    .tilted-window { transform: none !important; }
+  }
+</style>
